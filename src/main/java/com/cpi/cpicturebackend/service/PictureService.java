@@ -3,6 +3,7 @@ package com.cpi.cpicturebackend.service;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.cpi.cpicturebackend.model.dto.picture.PictureQueryRequest;
+import com.cpi.cpicturebackend.model.dto.picture.PictureReviewRequest;
 import com.cpi.cpicturebackend.model.dto.picture.PictureUploadRequest;
 import com.cpi.cpicturebackend.model.entity.Picture;
 import com.baomidou.mybatisplus.extension.service.IService;
@@ -22,12 +23,12 @@ public interface PictureService extends IService<Picture> {
     /**
      * 上传图片
      *
-     * @param multipartFile
+     * @param inputSource
      * @param pictureUploadRequest
      * @param loginUser
      * @return
      */
-    PictureVO uploadPicture(MultipartFile multipartFile,
+    PictureVO uploadPicture(Object inputSource,
                             PictureUploadRequest pictureUploadRequest,
                             User loginUser);
 
@@ -61,4 +62,16 @@ public interface PictureService extends IService<Picture> {
      * @param picture
      */
     void validPicture(Picture picture);
+
+    /**
+     * 图片审核
+     *
+     * @param pictureReviewRequest
+     * @param loginUser
+     */
+    void doPictureReview(PictureReviewRequest pictureReviewRequest, User loginUser);
+
+
+    //补充审核参数公共方法
+    void fillReviewParams(Picture picture, User loginUser);
 }
