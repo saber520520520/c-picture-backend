@@ -2,6 +2,10 @@ server:
   port: 8123
   server:
     context-path: /api
+    #cookie过期时间
+    session:
+      cookie:
+        max-age: 2592000
 
 spring:
   application:
@@ -18,6 +22,11 @@ spring:
     host: 127.0.0.1
     port: 6379
     timeout: 5000
+  #Session配置
+  session:
+    store-type: redis
+    #过期时间
+    timeout: 2592000
 
   #文件上传大小
   servlet:
